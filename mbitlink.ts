@@ -1,5 +1,5 @@
 //% weight=10 color=#008B00 icon="\uf2db" block="mbitlink"
-namespace mbitlink {
+namespace lib_mbitlink {
 
 type reciver = (str : string) => boolean
 type reseter = () => void

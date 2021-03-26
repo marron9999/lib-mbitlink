@@ -81,6 +81,7 @@ function received(str : string) {
 export function start(sleep : number = 50) {
     request.sleep = sleep
     bluetooth.startUartService()
+    reset()
     basic.forever(function () {
         if (_received.length > 0) {
             let data = _received

@@ -1,0 +1,36 @@
+{
+    "name": "lib-mbitlink",
+    "description": "",
+    "dependencies": {
+        "core": "*",
+        "bluetooth": "*"
+    },
+    "files": [
+        "mbitlink.ts",
+        "README.md"
+    ],
+    "yotta": {
+        "config": {
+            "microbit-dal": {
+                "bluetooth": {
+                    "gatt_table_size": "0x700",
+                    "open": 1,
+                    "whitelist": 0,
+                    "security_level": null,
+                    "dfu_service": 0,
+                    "event_service": 0,
+                    "device_info_service": 0
+                },
+                "stack_size": 2048
+            }
+        }
+    },
+    "preferredEditor": "tsprj",
+    "targetVersions": {
+        "branch": "v2.0.18",
+        "tag": "v2.0.18",
+        "commits": "https://github.com/microsoft/pxt-microbit/commits/d18a5640c3e8676a71291980c07bbf67bc64c2a9",
+        "target": "2.0.18",
+        "pxt": "5.15.20"
+    }
+}

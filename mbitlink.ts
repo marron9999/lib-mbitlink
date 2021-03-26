@@ -141,6 +141,7 @@ function parse(str : string) : boolean {
 							# . . . #
 							. # # # .
 							. . . . .`)
+			request.Connect = 1
             return true
         }
         if(c == "I") {

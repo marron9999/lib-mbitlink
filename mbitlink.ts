@@ -78,7 +78,7 @@ function received(str : string) {
 //% blockId=mbitlink_start block="Start mbitlink |%sleep "
 //% sleep.defl=50 sleep.min=0 sleep.max=1000
 //% weight=95
-export function start(sleep = 50) {
+export function start(sleep : number = 50) {
     request.sleep = sleep
     bluetooth.startUartService()
     basic.forever(function () {

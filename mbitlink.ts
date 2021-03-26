@@ -134,7 +134,13 @@ function parse(str : string) : boolean {
     if (c == "R") {
         c = str.charAt(0)
         if(c == "B") {
-            bluetooth.uartWriteString(str)
+            music.playTone(523, music.beat(BeatFraction.Sixteenth))
+            //input.setAccelerometerRange(AcceleratorRange.EightG)
+            basic.showLeds(`. # . # .
+							. . . . .
+							# . . . #
+							. # # # .
+							. . . . .`)
             return true
         }
         if(c == "I") {

@@ -48,13 +48,6 @@ let request = {
     sleep: 0
 }
 
-function setupAudio() {
-    pins.digitalWritePin(DigitalPin.P0, 0)
-    //pins.analogSetPitchPin(AnalogPin.P0)
-    pins.setAudioPin(AnalogPin.P0)
-    pins.analogWritePin(AnalogPin.P0, 0)
-}
-
 bluetooth.onBluetoothConnected(function () {
     _received = "RB"
 })

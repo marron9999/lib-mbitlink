@@ -49,8 +49,7 @@ export function int16_hex(v: number) : string {
 }
 
 let request = {
-    Connect : 1,
-    sleep: 0
+    Connect : 1
 }
 
 bluetooth.onBluetoothConnected(function () {
@@ -75,8 +74,7 @@ function received(str : string) {
  */
 //% blockId=mbitlink_start block="Start mbitlink"
 //% weight=95
-export function start(sleep : number = 50) {
-    request.sleep = sleep
+export function start() {
     reset()
     bluetooth.startUartService()
 }

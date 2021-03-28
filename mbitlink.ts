@@ -83,7 +83,7 @@ export function start(sleep : number = 50) {
 /**
  * dispatch message
  */
-//% blockId=mbitlink_start block="Start mbitlink"
+//% blockId=mbitlink_start block="Dispatch message"
 //% weight=95
 export function dispatch() {
     if (_received.length > 0) {

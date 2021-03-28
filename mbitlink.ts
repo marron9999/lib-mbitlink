@@ -108,7 +108,7 @@ export function dispatch() {
         }
     }
     for(let j=0; j<_inspecters.length; j++) {
-        _insprecivers[j]()
+        _inspecters[j]()
     }
 }
 

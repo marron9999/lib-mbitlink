@@ -3,16 +3,21 @@ namespace lib_mbitlink {
 
 type reciver = (str : string) => boolean
 type reseter = () => void
+type inspecter = () => void
 
 let _received = ""
 let _recivers : reciver[] = []
 let _reseters : reseter[] = []
+let _inspecters : inspecter[] = []
 
 export function reciver(reciver : reciver) {
     _recivers[_recivers.length] = reciver
 }
 export function reseter(reseter : reseter) {
     _reseters[_reseters.length] = reseter
+}
+export function inspecter(inspecter : inspecter) {
+    _inspecters[_inspecters.length] = inspecter
 }
 
 export function hex_int16(s: string) : number {
@@ -68,38 +73,43 @@ function received(str : string) {
 /**
  * Start micro:bit link service
  */
-//% blockId=mbitlink_start block="Start mbitlink |%sleep "
-//% sleep.defl=50 sleep.min=0 sleep.max=1000
+//% blockId=mbitlink_start block="Start mbitlink"
 //% weight=95
 export function start(sleep : number = 50) {
     request.sleep = sleep
-    bluetooth.startUartService()
     reset()
-    basic.forever(function () {
-        if (_received.length > 0) {
-            let data = _received
-            _received = ""
-            let str = null    
-            while (data.length > 0) {
-                let i = data.indexOf(",")
-                if (i > 0) {
-                    str = data.substr(0, i)
-                    data = data.substr(i + 1)
-                } else {
-                    str = data    
-                    data = ""
-                }
-                if(parse(str)) {
-                    continue
-                }
-                for(i=0; i<_recivers.length; i++) {
-                    if(_recivers[i](str)) break
-                }
+    bluetooth.startUartService()
+}
+/**
+ * dispatch message
+ */
+//% blockId=mbitlink_start block="Start mbitlink"
+//% weight=95
+export function dispatch() {
+    if (_received.length > 0) {
+        let data = _received
+        _received = ""
+        let str = null    
+        while (data.length > 0) {
+            let i = data.indexOf(",")
+            if (i > 0) {
+                str = data.substr(0, i)
+                data = data.substr(i + 1)
+            } else {
+                str = data    
+                data = ""
+            }
+            if(parse(str)) {
+                continue
+            }
+            for(i=0; i<_recivers.length; i++) {
+                if(_recivers[i](str)) break
             }
         }
-        if(request.sleep > 0)
-            basic.pause(request.sleep)
-    })
+    }
+    for(let j=0; j<_inspecters.length; j++) {
+        _insprecivers[j]()
+    }
 }
 
 function reset() {
